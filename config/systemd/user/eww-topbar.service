@@ -1,0 +1,17 @@
+[Unit]
+Description=WhiteSur Eww topbar
+Wants=eww-tray-bridge.service
+StartLimitIntervalSec=30
+StartLimitBurst=4
+
+[Service]
+Type=simple
+Environment=LC_TIME=ru_RU.UTF-8
+ExecStartPre=%h/.config/eww/scripts/bridge.py generate
+ExecStart=%h/.local/bin/eww --config %h/.config/eww --no-daemonize daemon
+ExecStartPost=%h/.local/bin/eww-topbar activate
+Restart=on-failure
+RestartSec=2
+TimeoutStartSec=20
+TimeoutStopSec=5
+KillMode=control-group

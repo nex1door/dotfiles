@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=picom
+Comment=Композитор: скругления, тени, размытие (Win+P — выключить)
+Exec=@@HOME@@/dotfiles/scripts/picom-toggle.sh on
+Icon=video-display
+Terminal=false
+X-GNOME-Autostart-enabled=true

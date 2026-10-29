@@ -1,0 +1,83 @@
+$text: #edf0f7;
+$muted: #9da6b7;
+$accent: #a5c5f5;
+
+* {
+  all: unset;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  color: $text;
+}
+
+window { background-color: transparent; }
+button { border-radius: 9px; transition: background-color 140ms ease; }
+button:hover { background-color: rgba(255, 255, 255, 0.09); }
+button:active { background-color: rgba(165, 197, 245, 0.18); }
+button:focus { box-shadow: inset 0 0 0 1px $accent; }
+.topbar {
+  background: rgba(20, 23, 30, 0.84);
+  border: 1px solid rgba(220, 231, 255, 0.13);
+  border-radius: 13px;
+  padding: 0 9px;
+}
+.left, .right { padding: 3px 0; }
+.apple { padding: 3px 12px; }
+.divider { color: rgba(190, 202, 224, 0.24); margin: 0 5px; font-size: 14px; }
+.wallhaven { padding: 3px 10px; }
+.wallhaven label { color: $accent; font-weight: 600; }
+.window-title { color: $muted; padding-left: 7px; font-size: 11px; }
+.clock { padding: 3px 15px; margin: 3px 0; }
+.date { color: #c2cada; font-size: 11px; }
+.clock-time { font-weight: 700; font-size: 13px; }
+.icon { font-family: "FantasqueSansM Nerd Font", "FontAwesome"; font-size: 18px; }
+.tray { padding: 0 7px; }
+.tray menu, menu {
+  background-color: #20242e;
+  border: 1px solid rgba(220,231,255,0.15);
+  border-radius: 11px;
+  padding: 6px;
+}
+menuitem { padding: 7px 12px; border-radius: 6px; }
+menuitem:hover { background: rgba(165,197,245,0.15); }
+menuitem:disabled label { color: #687083; }
+separator { background-color: rgba(220,231,255,0.12); min-height: 1px; margin: 4px; }
+.volume { padding: 3px 9px; }
+.volume-value { min-width: 33px; font-size: 11px; }
+.muted label { color: $muted; }
+.icon-button, .power-button { padding: 3px 10px; }
+.power-button label { color: #b9c6da; }
+.power-button:hover { background-color: rgba(236,148,164,0.13); }
+.power-button:hover label { color: #f0a7b7; }
+.popup {
+  background: rgba(24, 28, 37, 0.96);
+  border: 1px solid rgba(220,231,255,0.16);
+  border-radius: 17px;
+  padding: 20px;
+}
+.popup-title { font-weight: 700; font-size: 16px; }
+.close { color: $muted; font-size: 20px; min-width: 24px; min-height: 24px; }
+.subtitle { color: $muted; font-size: 11px; }
+.large-time { font-size: 42px; font-weight: 300; letter-spacing: -1px; }
+.section-label { color: $muted; font-size: 10px; font-weight: 600; letter-spacing: 1px; }
+.search-button { padding: 12px; background: rgba(255,255,255,0.055); border: 1px solid rgba(255,255,255,0.06); }
+.search-button label { color: $muted; }
+.app-row { padding: 8px; }
+.app-row label { font-size: 11px; }
+.wide-button { background: rgba(165,197,245,0.085); padding: 11px; color: $accent; }
+.wide-button:hover { background: rgba(165,197,245,0.17); }
+.media-card { padding: 14px; border-radius: 11px; background: rgba(255,255,255,0.04); }
+.media-card .subtitle { font-size: 9px; letter-spacing: 1px; }
+.media-button { min-width: 34px; min-height: 30px; color: $accent; }
+.audio-mute { padding: 7px; }
+scale { min-height: 20px; }
+scale trough { background: rgba(255,255,255,0.10); border-radius: 10px; min-height: 5px; }
+scale highlight { background: $accent; border-radius: 10px; }
+scale slider { background: #e5efff; border-radius: 100%; min-width: 12px; min-height: 12px; margin: -4px 0; }
+.session-action { padding: 10px; }
+.session-action .icon { color: $accent; }
+calendar { padding: 6px; }
+calendar.header { color: $accent; }
+calendar:selected { background: rgba(165,197,245,0.22); border-radius: 7px; color: #dbeaff; }
+calendar.highlight { color: $accent; }
+calendar:indeterminate { color: #596171; }
+tooltip { background: #252a36; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 8px; }

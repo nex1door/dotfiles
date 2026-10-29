@@ -1,0 +1,14 @@
+[Unit]
+Description=TokenRotator API Proxy Service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/programms/Token-Proxy-Rotator
+ExecStart=%h/programms/Token-Proxy-Rotator/.venv/bin/python %h/programms/Token-Proxy-Rotator/proxy.py
+Restart=always
+RestartSec=3
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=default.target

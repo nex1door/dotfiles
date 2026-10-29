@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+set -euo pipefail
+config="$HOME/.config/eww"
+state="$HOME/.local/state/eww-topbar"
+eww_bin="$HOME/.local/bin/eww"
+
+case "${1:-start}" in
+  start|restart)
+    mkdir -p "$state"
+    touch "$config/enabled"
+    systemctl --user import-environment DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS XDG_CURRENT_DESKTOP XDG_SESSION_TYPE
+    systemctl --user "${1:-start}" eww-topbar.service
+    ;;
+  activate)
+    # Validate the loaded config before releasing the existing panel's tray.
+    ready=false
+    for attempt in {1..30}; do
+      if "$eww_bin" --config "$config" ping >/dev/null 2>&1; then ready=true; break; fi
+      sleep 0.15
+    done
+    "$ready" || exit 1
+    if ! "$eww_bin" --config "$config" list-windows | grep -qx topbar; then exit 1; fi
+    xfce4-panel --quit >/dev/null 2>&1 || true
+    for attempt in {1..20}; do
+      pgrep -x xfce4-panel >/dev/null || break
+      sleep 0.1
+    done
+    if ! "$eww_bin" --config "$config" open topbar; then
+      setsid -f xfce4-panel >/dev/null 2>&1
+      exit 1
+    fi
+    # This app registers its SNI once, so reattach it to the new tray watcher
+    # after panel restarts as well as on login. Its SQLite history is persistent.
+    systemctl --user restart smart-clipboard.service || true
+    ;;
+  stop)
+    systemctl --user stop eww-topbar.service eww-tray-bridge.service
+    ;;
+  restore)
+    rm -f "$config/enabled"
+    systemctl --user stop eww-topbar.service eww-tray-bridge.service
+    if [[ -f "$HOME/.config/autostart/eww-topbar.desktop" ]]; then
+      mv "$HOME/.config/autostart/eww-topbar.desktop" "$state/eww-topbar.desktop.disabled"
+    fi
+    python3 "$config/scripts/restore-shortcuts.py"
+    if ! pgrep -x xfce4-panel >/dev/null; then setsid -f xfce4-panel >/dev/null 2>&1; fi
+    notify-send -a 'Панель' 'Вернулась панель XFCE' 'Eww сохранён в ~/.config/eww' || true
+    ;;
+  status)
+    systemctl --user --no-pager status eww-topbar.service eww-tray-bridge.service
+    ;;
+  *) printf 'Usage: eww-topbar {start|restart|stop|restore|status}\n' >&2; exit 2 ;;
+esac

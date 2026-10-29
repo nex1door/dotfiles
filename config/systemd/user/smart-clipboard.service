@@ -1,0 +1,31 @@
+[Unit]
+Description=Smart Clipboard — менеджер буфера обмена (X11, StatusNotifierItem)
+Documentation=man:systemd.exec(5)
+# Запускается вместе с сессией: user-менеджер стартует при логине в lightdm.
+After=graphical-session.target
+PartOf=graphical-session.target
+# Только X11: в Wayland-сессии Gtk.Clipboard работает иначе, сервис там не нужен.
+ConditionEnvironment=XDG_SESSION_TYPE=x11
+
+[Service]
+Type=simple
+# ВАЖНО: именно /usr/bin/python3 — это системный Python с PyGObject.
+# Python из venv/uv/pyenv модуль gi не видит.
+ExecStart=/usr/bin/python3 %h/.local/bin/smart_clipboard.py --limit 25
+# DISPLAY и XAUTHORITY приходят из окружения user-менеджера
+# (проверка: systemctl --user show-environment | grep DISPLAY).
+Restart=on-failure
+RestartSec=3
+KillSignal=SIGTERM
+TimeoutStopSec=10
+
+# Умеренное ужесточение. PrivateTmp=yes НЕЛЬЗЯ: X11-сокет лежит в /tmp/.X11-unix.
+NoNewPrivileges=yes
+ProtectSystem=full
+ProtectControlGroups=yes
+ProtectKernelTunables=yes
+RestrictSUIDSGID=yes
+# База и lock-файл живут в ~/.local/share/smart-clipboard (домашний каталог доступен).
+
+[Install]
+WantedBy=default.target

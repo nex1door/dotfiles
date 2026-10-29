@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=0.9.4
+Type=Application
+Name=tgproxy
+Comment=Proxy telegram
+Exec=tg-ws-proxy
+OnlyShowIn=XFCE;
+StartupNotify=false
+Terminal=false
+Hidden=false
+

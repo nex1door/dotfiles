@@ -1,0 +1,19 @@
+# состояние и кэш, которое не переносится между машинами
+.state/
+imports/
+.build/
+backups/
+profiles/_rollback-*/
+profiles/current-*/
+__pycache__/
+*.pyc
+*.log
+
+# секреты: в этом репозитории их быть не должно
+api-keys.txt
+secrets.env
+.netrc
+id_ed25519*
+id_rsa*
+*.pem
+*.key

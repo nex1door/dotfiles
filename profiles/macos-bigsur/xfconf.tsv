@@ -1,0 +1,22 @@
+# Профиль macOS Big Sur — значения xfconf.
+# Формат строки: канал:::свойство:::тип:::значение   (# — комментарий)
+# Применяется через xfconf-query (см. scripts/lib-theme.sh: apply_xfconf_tsv)
+
+# ── Общий вид GTK ─────────────────────────────────────────────────────────────
+xsettings:::/Net/ThemeName:::string:::WhiteSur-Dark
+xsettings:::/Net/IconThemeName:::string:::WhiteSur-dark
+xsettings:::/Gtk/CursorThemeName:::string:::WhiteSur-cursors
+xsettings:::/Gtk/CursorThemeSize:::int:::28
+xsettings:::/Gtk/DecorationLayout:::string:::close,minimize,maximize:
+
+# ── Оконный менеджер: «светофор» слева, центрированный заголовок ──────────────
+xfwm4:::/general/theme:::string:::WhiteSur-Dark
+# use_compositing НЕ задаём: им управляет picom (см. scripts/picom-toggle.sh),
+# иначе xfwm4 и picom работают одновременно и эффекты выглядят грязно
+xfwm4:::/general/frame_opacity:::int:::92
+xfwm4:::/general/title_alignment:::string:::center
+xfwm4:::/general/button_layout:::string:::CHM|O
+xfwm4:::/general/title_horizontal_offset:::int:::0
+
+# ── Панели: тёмный полупрозрачный вид (геометрия — в xfce4-panel.xml) ─────────
+xfce4-panel:::/panels/dark-mode:::bool:::true

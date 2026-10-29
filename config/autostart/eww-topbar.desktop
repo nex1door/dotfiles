@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Eww WhiteSur Topbar
+Comment=Верхняя панель Eww с Wallhaven, треем, звуком и календарём
+Exec=@@HOME@@/.local/bin/eww-topbar start
+Icon=preferences-desktop-display
+Terminal=false
+OnlyShowIn=XFCE;
+X-GNOME-Autostart-enabled=true
+X-GNOME-Autostart-Delay=2

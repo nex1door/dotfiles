@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Plank
+Comment=Док в стиле macOS
+Exec=plank
+Icon=plank
+Terminal=false
+X-GNOME-Autostart-enabled=true
+Hidden=false

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Обёртка picom: если есть системный пакет — работает он, иначе локальная копия
+# в ~/.local/opt/picom (поставлена без sudo: бинарник + libconfig).
+if [ -x /usr/bin/picom ]; then exec /usr/bin/picom "$@"; fi
+export LD_LIBRARY_PATH="$HOME/.local/opt/picom/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+exec "$HOME/.local/opt/picom/bin/picom" "$@"

@@ -1,0 +1,132 @@
+<?xml version="1.1" encoding="UTF-8"?>
+
+<channel name="xfce4-panel" version="1.0">
+  <property name="configver" type="int" value="2"/>
+  <property name="panels" type="array">
+    <value type="int" value="1"/>
+    <property name="dark-mode" type="bool" value="true"/>
+    <property name="panel-1" type="empty">
+      <property name="position" type="string" value="p=6;x=0;y=0"/>
+      <property name="length" type="uint" value="100"/>
+      <property name="length-adjust" type="bool" value="true"/>
+      <property name="position-locked" type="bool" value="true"/>
+      <property name="size" type="uint" value="28"/>
+      <property name="icon-size" type="uint" value="16"/>
+      <property name="background-style" type="uint" value="1"/>
+      <property name="background-rgba" type="array">
+        <value type="double" value="0.078431000000000001"/>
+        <value type="double" value="0.078431000000000001"/>
+        <value type="double" value="0.086275000000000004"/>
+        <value type="double" value="0.78000000000000003"/>
+      </property>
+      <property name="plugin-ids" type="array">
+        <value type="int" value="1"/>
+        <value type="int" value="2"/>
+        <value type="int" value="8"/>
+        <value type="int" value="3"/>
+        <value type="int" value="4"/>
+        <value type="int" value="5"/>
+        <value type="int" value="6"/>
+        <value type="int" value="7"/>
+      </property>
+      <property name="enable-struts" type="bool" value="true"/>
+    </property>
+  </property>
+  <property name="plugins" type="empty">
+    <property name="plugin-1" type="string" value="whiskermenu">
+      <property name="button-icon" type="string" value="apple-menu"/>
+      <property name="show-button-title" type="bool" value="false"/>
+      <property name="show-button-icon" type="bool" value="true"/>
+      <property name="menu-width" type="uint" value="420"/>
+      <property name="position-categories" type="string" value="left"/>
+      <property name="recent" type="array">
+        <value type="string" value="btrfs-assistant.desktop"/>
+        <value type="string" value="lstopo.desktop"/>
+        <value type="string" value="org.vinegarhq.Sober.desktop"/>
+        <value type="string" value="hydralauncher-4.2.0.desktop"/>
+        <value type="string" value="polymc-linux-amd64-8.1.desktop"/>
+        <value type="string" value="com.heroicgameslauncher.hgl.desktop"/>
+        <value type="string" value="cachyos-hello.desktop"/>
+        <value type="string" value="Happ.desktop"/>
+        <value type="string" value="org.openrgb.OpenRGB.desktop"/>
+        <value type="string" value="dota-2-mod-manager.desktop"/>
+      </property>
+      <property name="favorites" type="array">
+        <value type="string" value="org.kde.krita.desktop"/>
+        <value type="string" value="steam.desktop"/>
+        <value type="string" value="dev.zed.Zed.desktop"/>
+        <value type="string" value="Alacritty.desktop"/>
+        <value type="string" value="org.telegram.desktop.desktop"/>
+        <value type="string" value="vesktop.desktop"/>
+        <value type="string" value="org.qbittorrent.qBittorrent.desktop"/>
+        <value type="string" value="ru.linux_gaming.PortProton.desktop"/>
+        <value type="string" value="polymc-linux-amd64-8.1.desktop"/>
+        <value type="string" value="com.heroicgameslauncher.hgl.desktop"/>
+        <value type="string" value="lmstudio.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-2" type="string" value="separator">
+      <property name="expand" type="bool" value="true"/>
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-3" type="string" value="systray">
+      <property name="square-icons" type="bool" value="true"/>
+      <property name="show-frame" type="bool" value="false"/>
+      <property name="size-max" type="uint" value="20"/>
+      <property name="known-items" type="array">
+        <value type="string" value=""/>
+        <value type="string" value="wallhaven-app"/>
+        <value type="string" value="chrome_status_icon_1"/>
+        <value type="string" value="smart-clipboard"/>
+        <value type="string" value="qBittorrent"/>
+        <value type="string" value="hydralauncher_status_icon_1"/>
+        <value type="string" value="heroic_status_icon_1"/>
+        <value type="string" value="tray-id"/>
+        <value type="string" value="Happ"/>
+        <value type="string" value="obs"/>
+        <value type="string" value="com.soundcloud.desktop"/>
+        <value type="string" value="openrgb"/>
+        <value type="string" value="shelly.shellyorg.Notifications"/>
+        <value type="string" value="vesktop_status_icon_1"/>
+        <value type="string" value="steam"/>
+        <value type="string" value="TgWsProxy"/>
+        <value type="string" value="TelegramDesktop"/>
+        <value type="string" value="blueman"/>
+      </property>
+      <property name="known-legacy-items" type="array">
+        <value type="string" value="sc_probe.py"/>
+        <value type="string" value="аплет networkmanager"/>
+        <value type="string" value="steam"/>
+        <value type="string" value="сетевое соединение ethernet «проводное подключение 1» активно"/>
+      </property>
+    </property>
+    <property name="plugin-4" type="string" value="pulseaudio">
+      <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
+      <property name="enable-mpris" type="bool" value="true"/>
+      <property name="mixer-command" type="string" value="pavucontrol"/>
+      <property name="show-notifications" type="bool" value="true"/>
+      <property name="known-players" type="string" value="firefox;org.telegram.desktop;SoundCloud Desktop"/>
+    </property>
+    <property name="plugin-5" type="string" value="clock">
+      <property name="digital-format" type="string" value="%a %d %b  %H:%M"/>
+      <property name="show-seconds" type="bool" value="false"/>
+      <property name="digital-time-format" type="string" value="%a %d %b  %H:%M"/>
+      <property name="digital-layout" type="uint" value="3"/>
+      <property name="show-week-numbers" type="bool" value="true"/>
+    </property>
+    <property name="plugin-6" type="string" value="actions">
+      <property name="appearance" type="uint" value="0"/>
+      <property name="ask-confirmation" type="bool" value="true"/>
+    </property>
+    <property name="plugin-7" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="theme-switch.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-8" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="wallhaven-app.desktop"/>
+      </property>
+    </property>
+  </property>
+</channel>

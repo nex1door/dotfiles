@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# sassc-совместимый shim: переводит вызовы sassc (libsass) на dart-sass.
+# Нужен потому, что WhiteSur-gtk-theme собирается через sassc, а sassc в системе нет.
+# dart-sass ставится локально: npm i -g --prefix ~/.local/share/npm-global sass
+set -euo pipefail
+
+SASS_BIN="${SASS_BIN:-$HOME/.local/share/npm-global/bin/sass}"
+[ -x "$SASS_BIN" ] || { echo "sassc-shim: dart-sass не найден: $SASS_BIN" >&2; exit 127; }
+
+opts=(--no-source-map --quiet-deps)
+pos=()
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    -t|--style)        opts+=("--style=$2"); shift 2 ;;
+    -s)                opts+=("--style=compressed"); shift ;;
+    -I|--load-path)    opts+=("--load-path=$2"); shift 2 ;;
+    -p)                shift 2 ;;   # precision — у dart-sass нет
+    -m|--sourcemap|-a|--precision|-C|--omit-map-comment|-M)
+                       shift ;;     # игнорируем sourcemap/precision-флаги libsass
+    --)                shift; while [ "$#" -gt 0 ]; do pos+=("$1"); shift; done ;;
+    *)                 pos+=("$1"); shift ;;
+  esac
+done
+
+exec "$SASS_BIN" "${opts[@]}" "${pos[@]}"

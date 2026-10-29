@@ -1,0 +1,12 @@
+[Unit]
+Description=XEmbed to StatusNotifier bridge for Eww (legacy tray icons)
+PartOf=eww-topbar.service
+After=eww-topbar.service
+
+[Service]
+Type=simple
+Environment=LD_LIBRARY_PATH=%h/.local/opt/eww-topbar/lib
+Environment=QT_QPA_PLATFORM=xcb
+ExecStart=%h/.local/opt/eww-topbar/bin/xembedsniproxy
+Restart=on-failure
+RestartSec=2

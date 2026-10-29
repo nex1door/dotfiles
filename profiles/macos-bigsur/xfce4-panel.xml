@@ -1,0 +1,156 @@
+<?xml version="1.1" encoding="UTF-8"?>
+
+<!-- Профиль macOS Big Sur: верхняя строка (Apple-меню + статус) и нижний док.
+     Плагины подобраны только из уже установленных пакетов xfce4-*.
+     Меняется целиком через scripts/theme-switch.sh apply macos-bigsur -->
+
+<channel name="xfce4-panel" version="1.0">
+  <property name="configver" type="int" value="2"/>
+  <property name="panels" type="array">
+    <value type="int" value="1"/>
+    <value type="int" value="2"/>
+
+    <property name="dark-mode" type="bool" value="true"/>
+
+    <!-- верхняя строка как в macOS -->
+    <property name="panel-1" type="empty">
+      <property name="position" type="string" value="p=6;x=0;y=0"/>
+      <property name="length" type="uint" value="100"/>
+      <property name="length-adjust" type="bool" value="true"/>
+      <property name="position-locked" type="bool" value="true"/>
+      <property name="size" type="uint" value="28"/>
+      <property name="icon-size" type="uint" value="16"/>
+      <property name="disable-struts" type="bool" value="false"/>
+      <property name="background-style" type="uint" value="1"/>
+      <property name="background-rgba" type="array">
+        <value type="double" value="0.078431"/>
+        <value type="double" value="0.078431"/>
+        <value type="double" value="0.086275"/>
+        <value type="double" value="0.780000"/>
+      </property>
+      <property name="plugin-ids" type="array">
+        <value type="int" value="1"/>
+        <value type="int" value="2"/>
+        <value type="int" value="3"/>
+        <value type="int" value="4"/>
+        <value type="int" value="5"/>
+        <value type="int" value="6"/>
+        <value type="int" value="7"/>
+      </property>
+    </property>
+
+    <!-- нижний док -->
+    <property name="panel-2" type="empty">
+      <property name="position" type="string" value="p=10;x=0;y=0"/>
+      <property name="length" type="uint" value="26"/>
+      <property name="length-adjust" type="bool" value="false"/>
+      <property name="position-locked" type="bool" value="true"/>
+      <property name="size" type="uint" value="54"/>
+      <property name="icon-size" type="uint" value="32"/>
+      <property name="autohide-behavior" type="uint" value="0"/>
+      <property name="disable-struts" type="bool" value="false"/>
+      <property name="background-style" type="uint" value="1"/>
+      <property name="background-rgba" type="array">
+        <value type="double" value="0.078431"/>
+        <value type="double" value="0.078431"/>
+        <value type="double" value="0.086275"/>
+        <value type="double" value="0.620000"/>
+      </property>
+      <property name="plugin-ids" type="array">
+        <value type="int" value="10"/>
+        <value type="int" value="11"/>
+        <value type="int" value="12"/>
+        <value type="int" value="13"/>
+        <value type="int" value="14"/>
+        <value type="int" value="15"/>
+      </property>
+    </property>
+  </property>
+
+  <property name="plugins" type="empty">
+    <!-- Apple-меню: whisker с логотипом -->
+    <property name="plugin-1" type="string" value="whiskermenu">
+      <property name="button-icon" type="string" value="apple-menu"/>
+      <property name="show-button-title" type="bool" value="false"/>
+      <property name="show-button-icon" type="bool" value="true"/>
+      <property name="menu-width" type="uint" value="420"/>
+      <property name="position-categories" type="string" value="left"/>
+    </property>
+
+    <property name="plugin-2" type="string" value="separator">
+      <property name="expand" type="bool" value="true"/>
+      <property name="style" type="uint" value="0"/>
+    </property>
+
+    <property name="plugin-3" type="string" value="systray">
+      <property name="square-icons" type="bool" value="true"/>
+      <property name="show-frame" type="bool" value="false"/>
+      <property name="size-max" type="uint" value="20"/>
+      <property name="known-items" type="array">
+        <value type="string" value="steam"/>
+        <value type="string" value="TgWsProxy"/>
+        <value type="string" value="TelegramDesktop"/>
+        <value type="string" value="blueman"/>
+      </property>
+    </property>
+
+    <property name="plugin-4" type="string" value="pulseaudio">
+      <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
+      <property name="enable-mpris" type="bool" value="true"/>
+      <property name="mixer-command" type="string" value="pavucontrol"/>
+      <property name="show-notifications" type="bool" value="true"/>
+    </property>
+
+    <property name="plugin-5" type="string" value="clock">
+      <property name="digital-format" type="string" value="%a %d %b  %H:%M"/>
+      <property name="show-seconds" type="bool" value="false"/>
+    </property>
+
+    <property name="plugin-6" type="string" value="actions">
+      <property name="appearance" type="uint" value="0"/>
+      <property name="ask-confirmation" type="bool" value="true"/>
+    </property>
+
+    <!-- кнопка переключения оформления: 1 клик -->
+    <property name="plugin-7" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="theme-switch.desktop"/>
+      </property>
+    </property>
+
+    <!-- ── док ── -->
+    <property name="plugin-10" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="thunar.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-11" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="firefox.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-12" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="xfce4-terminal.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-13" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="org.telegram.desktop.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-14" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="vlc.desktop"/>
+      </property>
+    </property>
+
+    <property name="plugin-15" type="string" value="tasklist">
+      <property name="grouping" type="uint" value="1"/>
+      <property name="show-labels" type="bool" value="false"/>
+      <property name="show-handle" type="bool" value="false"/>
+      <property name="flat-buttons" type="bool" value="true"/>
+      <property name="show-tooltips" type="bool" value="true"/>
+    </property>
+  </property>
+</channel>

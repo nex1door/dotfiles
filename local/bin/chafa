@@ -1,0 +1,8 @@
+#!/bin/sh
+# User-local chafa (extracted from the official CachyOS package, verified signature)
+# because a system-wide `pacman -S chafa` needs root. Prefers a system install if it appears.
+if [ -x /usr/bin/chafa ]; then
+    exec /usr/bin/chafa "$@"
+fi
+LD_LIBRARY_PATH=$HOME/.local/opt/chafa/usr/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH} \
+    exec $HOME/.local/opt/chafa/usr/bin/chafa "$@"

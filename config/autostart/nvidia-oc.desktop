@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=NVIDIA Memory OC
+Exec=/bin/bash @@HOME@@/.local/bin/nvidia-oc.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true

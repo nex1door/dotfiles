@@ -1,0 +1,118 @@
+(include "generated.yuck")
+
+(deflisten desktop :initial "{\"time\":\"00:00\",\"date\":\"\",\"full_date\":\"\",\"volume\":0,\"muted\":false,\"volume_icon\":\"󰕾\",\"sink\":\"\",\"title\":\"Рабочий стол\",\"media\":\"Нет воспроизведения\",\"playing\":false}"
+  "~/.config/eww/scripts/bridge.py listen")
+
+(defwindow topbar
+  :monitor 0
+  :geometry (geometry :x "0px" :y "8px" :width "99.3%" :height "40px" :anchor "top center")
+  :stacking "bg" :windowtype "dock" :wm-ignore false
+  :reserve (struts :side "top" :distance "56px")
+  (centerbox :class "topbar" :orientation "h"
+    (box :class "left" :space-evenly false :spacing 4
+      (button :class "apple" :tooltip "Приложения · избранное и недавние"
+        :onclick "~/.config/eww/scripts/bridge.py toggle apps" :timeout "3s"
+        (image :path "assets/apple.svg" :image-width 17 :image-height 20))
+      (label :class "divider" :text "│")
+      (button :class "wallhaven" :tooltip "WallpaperEngine / Wallhaven · открыть движок обоев"
+        :onclick "~/.config/eww/scripts/bridge.py wallpaper"
+        :timeout "10s"
+        (box :space-evenly false :spacing 8
+          (image :path "assets/wallhaven.svg" :image-width 19 :image-height 19)
+          (label :text "Wallhaven")))
+      (label :class "divider" :text "│")
+      (label :class "window-title" :text {desktop.title} :limit-width 40 :tooltip {desktop.title}))
+    (button :class "clock" :tooltip {desktop.full_date}
+      :onclick "~/.config/eww/scripts/bridge.py toggle calendar" :timeout "3s"
+      (box :space-evenly false :spacing 10
+        (label :class "date" :text {desktop.date})
+        (label :class "clock-time" :text {desktop.time})))
+    (box :class "right" :space-evenly false :halign "end" :spacing 5
+      (box :class "tray" :space-evenly false
+        (systray :icon-size 18 :spacing 9 :space-evenly false :prepend-new false))
+      (label :class "divider" :text "│")
+      (eventbox :onscroll "~/.config/eww/scripts/bridge.py volume-scroll {}" :timeout "2s"
+        (button :class {desktop.muted ? "volume muted" : "volume"}
+          :tooltip "Звук и плееры · колесо: громкость · правая кнопка: выключить звук"
+          :onclick "~/.config/eww/scripts/bridge.py toggle audio" :timeout "3s"
+          :onrightclick "~/.config/eww/scripts/bridge.py mute"
+          (box :space-evenly false :spacing 7
+            (label :class "icon" :text {desktop.volume_icon})
+            (label :class "volume-value" :text "${desktop.volume}%"))))
+      (button :class "icon-button" :tooltip "Оформление XFCE · твой переключатель тем"
+        :onclick "~/.config/eww/scripts/bridge.py theme" :timeout "10s"
+        (label :class "icon" :text "󰔎"))
+      (label :class "divider" :text "│")
+      (button :class "power-button" :tooltip "Блокировка, сон и завершение сеанса"
+        :onclick "~/.config/eww/scripts/bridge.py toggle session" :timeout "3s"
+        (label :class "icon" :text "󰐥")))))
+
+(defwindow calendar
+  :monitor 0
+  :geometry (geometry :x "0px" :y "58px" :width "340px" :height "360px" :anchor "top center")
+  :stacking "fg" :windowtype "dialog" :wm-ignore false
+  (box :class "popup calendar-popup" :orientation "v" :space-evenly false :spacing 14
+    (box :space-evenly false
+      (label :class "popup-title" :hexpand true :xalign 0 :text "Календарь")
+      (button :class "close" :onclick "~/.config/eww/scripts/bridge.py close" "×"))
+    (label :class "large-time" :text {desktop.time})
+    (label :class "subtitle" :text {desktop.full_date})
+    (calendar :show-week-numbers true :show-heading true :show-day-names true)))
+
+(defwindow audio
+  :monitor 0
+  :geometry (geometry :x "12px" :y "58px" :width "360px" :height "290px" :anchor "top right")
+  :stacking "fg" :windowtype "dialog" :wm-ignore false
+  (box :class "popup" :orientation "v" :space-evenly false :spacing 16
+    (box :space-evenly false
+      (label :class "popup-title" :hexpand true :xalign 0 :text "Звук")
+      (button :class "close" :onclick "~/.config/eww/scripts/bridge.py close" "×"))
+    (box :space-evenly false :spacing 12
+      (button :class "audio-mute" :onclick "~/.config/eww/scripts/bridge.py mute"
+        (label :class "icon" :text {desktop.volume_icon}))
+      (scale :hexpand true :min 0 :max 150 :value {desktop.volume}
+        :onchange "~/.config/eww/scripts/bridge.py set-volume {}" :timeout "2s")
+      (label :class "volume-value" :text "${desktop.volume}%"))
+    (label :class "subtitle" :text {desktop.sink} :limit-width 38 :xalign 0)
+    (box :class "media-card" :orientation "v" :space-evenly false :spacing 10
+      (label :class "subtitle" :xalign 0 :text "СЕЙЧАС ИГРАЕТ")
+      (label :xalign 0 :text {desktop.media} :limit-width 35 :tooltip {desktop.media})
+      (box :halign "center" :space-evenly false :spacing 18
+        (button :class "media-button icon" :onclick "~/.config/eww/scripts/bridge.py media Previous" :timeout "3s" "󰒮")
+        (button :class "media-button icon" :onclick "~/.config/eww/scripts/bridge.py media PlayPause" :timeout "3s" {desktop.playing ? "󰏤" : "󰐊"})
+        (button :class "media-button icon" :onclick "~/.config/eww/scripts/bridge.py media Next" :timeout "3s" "󰒭")))
+    (button :class "wide-button" :onclick "~/.config/eww/scripts/bridge.py mixer" :timeout "10s" "Открыть микшер  ↗")))
+
+(defwindow apps
+  :monitor 0
+  :geometry (geometry :x "12px" :y "58px" :width "470px" :height "550px" :anchor "top left")
+  :stacking "fg" :windowtype "dialog" :wm-ignore false
+  (box :class "popup apps-popup" :orientation "v" :space-evenly false :spacing 14
+    (box :space-evenly false
+      (label :class "popup-title" :hexpand true :xalign 0 :text "Приложения")
+      (button :class "close" :onclick "~/.config/eww/scripts/bridge.py close" "×"))
+    (button :class "search-button" :onclick "~/.config/eww/scripts/bridge.py appfinder" :timeout "10s"
+      (box :space-evenly false :spacing 10
+        (label :class "icon" :text "󰍉")
+        (label :text "Поиск по всем приложениям…")))
+    (label :class "section-label" :text "ИЗБРАННОЕ" :xalign 0)
+    (favorite-apps)
+    (label :class "section-label" :text "НЕДАВНИЕ" :xalign 0)
+    (recent-apps)
+    (button :class "wide-button" :onclick "~/.config/eww/scripts/bridge.py appfinder" :timeout "10s" "Все приложения  ↗")))
+
+(defwindow session
+  :monitor 0
+  :geometry (geometry :x "12px" :y "58px" :width "300px" :height "260px" :anchor "top right")
+  :stacking "fg" :windowtype "dialog" :wm-ignore false
+  (box :class "popup" :orientation "v" :space-evenly false :spacing 12
+    (box :space-evenly false
+      (label :class "popup-title" :hexpand true :xalign 0 :text "Сеанс")
+      (button :class "close" :onclick "~/.config/eww/scripts/bridge.py close" "×"))
+    (button :class "session-action" :onclick "~/.config/eww/scripts/bridge.py lock" :timeout "10s"
+      (box :space-evenly false :spacing 12 (label :class "icon" :text "󰌾") (label :text "Заблокировать экран")))
+    (button :class "session-action" :onclick "~/.config/eww/scripts/bridge.py switch-user" :timeout "10s"
+      (box :space-evenly false :spacing 12 (label :class "icon" :text "󰍃") (label :text "Сменить пользователя")))
+    (button :class "session-action" :onclick "~/.config/eww/scripts/bridge.py logout" :timeout "10s"
+      (box :space-evenly false :spacing 12 (label :class "icon" :text "󰐥") (label :text "Выход, сон, перезагрузка…")))
+    (label :class "subtitle" :wrap true :limit-width 31 :text "Действие выбирается в диалоге XFCE.")))

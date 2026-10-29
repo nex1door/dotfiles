@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Оформление XFCE
+Name[en]=Theme switcher
+Comment=Переключить тему XFCE (macOS ↔ бэкап) в один клик
+Comment[en]=Switch XFCE theme (macOS <-> backup) in one click
+Exec=@@HOME@@/dotfiles/scripts/theme-menu.sh
+Icon=preferences-desktop-theme
+Terminal=false
+StartupNotify=false
+Categories=Settings;DesktopSettings;X-XFCE-SettingsDialog;
+Keywords=theme;тема;оформление;macos;gtk;
+OnlyShowIn=XFCE;

@@ -1,0 +1,22 @@
+[Default Applications]
+x-scheme-handler/discord=vesktop.desktop
+x-scheme-handler/d2mm=dota2-mod-manager.desktop
+x-scheme-handler/mailto=xfce4-mail-reader.desktop
+application/x-ms-dos-executable;application/x-wine-extension-msp;application/x-msi;application/x-msdos-program;text/win-bat;=PortProton.desktop
+application/octet-stream=Alacritty.desktop
+application/x-executable=Alacritty.desktop
+x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop
+
+[Added Associations]
+x-scheme-handler/d2mm=dota2-mod-manager.desktop;
+x-scheme-handler/mailto=xfce4-mail-reader.desktop;
+text/x-python3=dev.zed.Zed.desktop;
+application/vnd.microsoft.portable-executable=ru.linux_gaming.PortProton.desktop;
+text/x-java=dev.zed.Zed.desktop;
+text/markdown=dev.zed.Zed.desktop;
+application/octet-stream=Alacritty.desktop;
+application/x-executable=Alacritty.desktop;
+text/html=dev.zed.Zed.desktop;
+application/json=dev.zed.Zed.desktop;
+text/x-python=dev.zed.Zed.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=org.gnome.FileRoller.desktop;
