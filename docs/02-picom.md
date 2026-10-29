@@ -50,7 +50,7 @@ picom, запускает `setsid -f <bin> --config <cfg> --log-file ~/.cache/pi
 
 ```ini
 backend = "glx";              # на NVIDIA glx быстрее xrender
-vsync = true;                 # монитор 165 Гц: без разрывов
+vsync = true;                 # монитор 120–165 Гц: без разрывов
 use-damage = true;            # перерисовывать только повреждённое
 detect-rounded-corners = true;
 detect-client-opacity = true;
